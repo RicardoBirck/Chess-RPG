@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import AdventurePage from './pages/AdventurePage';
+import BattlePage from './pages/BattlePage';
 
-function App() {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
+const App = () => {
   return (
-    <div className="App">
-      <h1>Welcome to Chess RPG!</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-        placeholder="Your name"
-      />
-      <p>Name: {inputValue}</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/adventure" element={<AdventurePage />} />
+        <Route path="/battle" element={<BattlePage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
