@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import NameInput from '../components/NameInput';          // If NameInput.js is in components
+import ClassButton from '../components/ClassButton';      // If ClassButton.js is in components
+import ClassInfo from '../components/ClassInfo';          // If ClassInfo.js is in components
+>>>>>>> ef9c73e (Lots of components)
 
 const HomePage = () => {
   const [name, setName] = useState('');
@@ -12,9 +18,13 @@ const HomePage = () => {
     rogue: { health: 14, energy: 12, attack: 8, defense: 2 },
   };
 
+<<<<<<< HEAD
   const handleClassSelection = (className) => {
     setSelectedClass(classes[className]);
   };
+=======
+  const handleClassSelection = (className) => setSelectedClass(classes[className]);
+>>>>>>> ef9c73e (Lots of components)
 
   const handleStartAdventure = () => {
     navigate('/adventure', { state: { name, selectedClass } });
@@ -23,6 +33,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Chess RPG</h1>
+<<<<<<< HEAD
       <input
         type="text"
         placeholder="Enter your name"
@@ -46,6 +57,16 @@ const HomePage = () => {
           <button onClick={handleStartAdventure}>Start Adventure</button>
         </div>
       )}
+=======
+      <NameInput name={name} setName={setName} />
+      <div>
+        {Object.keys(classes).map((className) => (
+          <ClassButton key={className} className={className} onSelect={handleClassSelection} />
+        ))}
+      </div>
+      {selectedClass && <ClassInfo selectedClass={selectedClass} />}
+      {selectedClass && <button onClick={handleStartAdventure}>Start Adventure</button>}
+>>>>>>> ef9c73e (Lots of components)
     </div>
   );
 };
