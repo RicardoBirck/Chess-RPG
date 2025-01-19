@@ -3,7 +3,7 @@ import React from 'react';
 const AttackButtons = ({ onBasicAttack, onEnhancedAttack, playerEnergy }) => {
   return (
     <div>
-      <button onClick={() => onBasicAttack()} disabled={playerEnergy < 1}>
+      <button onClick={() => onBasicAttack()}>
         Basic Attack
       </button>
       <button onClick={() => onEnhancedAttack()} disabled={playerEnergy < 3}>

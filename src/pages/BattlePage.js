@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import AttackButtons from '../components/AttackButtons';  // Import the AttackButtons component
+import AttackButtons from '../components/AttackButtons';  
 
 const BattlePage = () => {
   const { state } = useLocation();
@@ -12,6 +12,7 @@ const BattlePage = () => {
   const [playerEnergy, setPlayerEnergy] = useState(player.selectedClass.energy);
   const [turn, setTurn] = useState('player');
   const [message, setMessage] = useState('Your turn!');
+  const [message2, setMessage2] = useState('');
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameResult, setGameResult] = useState('');
   const [playerDamage, setPlayerDamage] = useState(0);
@@ -29,7 +30,7 @@ const BattlePage = () => {
     if (isEnhanced && playerEnergy >= 3) {
       // Enhanced Attack
       damage = calculateDamage(player.selectedClass.attack, enemy.defense) + 3;
-      setPlayerEnergy(playerEnergy - 3);  // Deduct energy
+      setPlayerEnergy(playerEnergy - 3);  
       setMessage(`You used Enhanced Attack! You dealt ${damage} damage.`);
     } else if (!isEnhanced) {
       // Basic Attack
@@ -49,7 +50,7 @@ const BattlePage = () => {
     const damage = calculateDamage(enemy.attack, player.selectedClass.defense);
     setPlayerHealth(playerHealth - damage);
     setEnemyDamage(damage);  // Store enemy damage dealt
-    setMessage(`Enemy attacked! It dealt ${damage} damage.`);
+    setMessage2(`Enemy attacked! It dealt ${damage} damage.`);
     setTurn('player');
   };
 
@@ -71,10 +72,10 @@ const BattlePage = () => {
   // Simulate the enemy's turn with a delay
   useEffect(() => {
     if (turn === 'enemy') {
-      setMessage('Enemy is thinking...');
+      setMessage2('Enemy is attacking...');
       setTimeout(() => {
         enemyAttack();
-      }, 3000); // 3 seconds delay for the computer's turn
+      }, 1500); // 1.5 seconds delay for the computer's turn
     }
   }, [turn]);
 
@@ -93,7 +94,7 @@ const BattlePage = () => {
     <div>
       <h1>Battle Page</h1>
       <h2>Name: {player.name}</h2>
-      <h2>Class: {Object.keys(player.selectedClass)[0]}</h2>
+      <h2>Class: {player.selectedClass.name}</h2>
       <p>Health: {playerHealth}</p>
       <p>Energy: {playerEnergy}</p>
       <p>Attack: {player.selectedClass.attack}</p>
@@ -102,8 +103,7 @@ const BattlePage = () => {
       <p>Enemy Health: {enemyHealth}</p>
       <p>Enemy Attack: {enemy.attack}</p>
       <p>Enemy Defense: {enemy.defense}</p>
-      <p>{message}</p>
-
+     
       {/* Pass the attack logic into AttackButtons */}
       {!isGameOver && turn === 'player' && (
         <AttackButtons 
@@ -113,9 +113,8 @@ const BattlePage = () => {
         />
       )}
 
-      {/* Display the damage dealt */}
-      {playerDamage > 0 && <p>You dealt {playerDamage} damage to the enemy.</p>}
-      {enemyDamage > 0 && !isGameOver && <p>Enemy dealt {enemyDamage} damage to you.</p>}
+      <p>{message}</p>
+      <p>{message2}</p>
 
       {/* Game over message and option to return */}
       {isGameOver && (

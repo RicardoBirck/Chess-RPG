@@ -24,4 +24,4 @@ const EnemyList = ({ onBattleStart }) => {
   );
 };
 
-export default EnemyList;  // Default export
+export default EnemyList;  
