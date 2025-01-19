@@ -1,11 +1,12 @@
-// EnemyList.js
 import React from 'react';
-import EnemyButton from './EnemyButton';  // Import EnemyButton component
+import EnemyButton from './EnemyButton';  
 
 const enemies = [
   { name: 'Orc', health: 18, attack: 12, defense: 3 },
   { name: 'Goblin', health: 15, attack: 5, defense: 1 },
   { name: 'Skeleton', health: 12, attack: 7, defense: 1 },
+  { name: 'Pirate', health: 12, attack: 7, defense: 1 },
+  { name: 'Emily', health: 12, attack: 7, defense: 1 },
 ];
 
 const EnemyList = ({ onBattleStart }) => {
